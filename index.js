@@ -1,6 +1,9 @@
 /*Para iniciar um servidor, é preciso uma porta à qual ouvir.
 Esta porta será passada para o programa como variável de ambiente PORT
 na hora de executar o programa.*/
+
+require('dotenv').config()
+
 if (!process.env.PORT)
     throw Error("Variável de ambiente PORT não informada");
 const port = process.env.PORT;
