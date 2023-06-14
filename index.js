@@ -1,3 +1,6 @@
+/*Para iniciar um servidor, é preciso uma porta à qual ouvir.
+Esta porta será passada para o programa como variável de ambiente PORT
+na hora de executar o programa.*/
 if (!process.env.PORT)
     throw Error("Variável de ambiente PORT não informada");
 const port = process.env.PORT;
@@ -8,6 +11,7 @@ const timestamp = Date.now();
 const randoNumber = Math.floor((Math.random() + 10000) + 1000);
 const myKey = sha(port + "" + timestamp + "" + randoNumber);
 
+//Instanciando peer: De volta em index.js, iremos requerir a classe Peer e a instanciar, passando port no construtor.
 const Peer = require("./Peer");
 const peer = new Peer(port);
 
@@ -37,6 +41,7 @@ process.stdin.on('data', data => {
     peer.broadcast(JSON.stringify({ id, signature, message }));
 
     console.log("TENTATIVA DE ENVIAR ARQUIVO")
+    
     peer.sendFile();
     //console.log("-----------------------------")
 });
